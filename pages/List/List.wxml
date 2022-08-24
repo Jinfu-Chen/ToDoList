@@ -16,7 +16,10 @@
 </van-action-sheet>
 
 <view wx:for="{{taskList}}" wx:key="id" class="taskWhole">
-  <view style="text-align: center;">任务{{item.id}}</view>
+  <view style="display: flex;">
+    <view style="text-align: center; width: 90%; font-size: 34rpx;">任务{{item.id}}</view>
+    <van-icon name="cross" size="40rpx" id="{{item.id}}" bind:click="deleteTask" />
+  </view>
   <view style="display: flex; align-items: center;">
     <view style="width: 85%;">
       <view>标题：{{item.title}}</view>
@@ -24,7 +27,7 @@
       <view style="font-size: 28rpx;">创建时间：{{item.creatTime}}</view>
       <view style="font-size: 28rpx;">完成时间：{{item.finishTime}}</view>
     </view>
-    <van-checkbox value="{{ item.finished }}" icon-size="80rpx" shape="square" bind:change="changeStatus" id="{{item.id}}"></van-checkbox>
+    <van-checkbox value="{{ item.finished }}" icon-size="70rpx" shape="square" bind:change="changeStatus" id="{{item.id}}"></van-checkbox>
   </view>
 </view>
 

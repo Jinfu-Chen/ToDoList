@@ -73,6 +73,21 @@ Page({
       ['taskList['+(id-1)+'].finished']:!this.data.taskList[id-1].finished
     })
   },
+  //点击任务右上角的叉叉，删除任务
+  deleteTask(e){
+    console.log(e) 
+    let id=e.currentTarget.id 
+    this.data.taskList.splice(id-1,1)
+    for(let i=id-1;i<this.data.taskList.length;i++){
+      console.log(i);
+      this.setData({
+        ['taskList['+i+'].id']:i+1
+      })
+    }
+    this.setData({
+      taskList:this.data.taskList
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
