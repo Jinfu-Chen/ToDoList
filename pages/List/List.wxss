@@ -1,0 +1,16 @@
+/* pages/List/List.wxss */
+.addTask{
+	overflow:hidden;
+	/* margin-bottom:0; */
+	/* background:#f0eff5; */
+	width:100%;
+	position:fixed;
+	bottom:0px;
+	display:flex;
+	justify-content:center;
+}
+.addConfirm{
+  display: flex;
+  height: 150rpx;
+  justify-content: center;
+}

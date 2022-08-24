@@ -1,0 +1,20 @@
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="未完成"></van-tab>
+  <van-tab title="已完成"></van-tab>
+</van-tabs>
+
+<van-action-sheet show="{{show}}" bind:close="onClose" title="添加任务">
+  <van-cell-group>
+    <van-field value="{{ title }}" label="任务标题" placeholder="请输入任务标题" border="{{ false }}" bind:change="onChange" />
+    <van-field value="{{ remarks }}" label="任务备注" placeholder="请输入任务备注" border="{{ false }}" bind:change="onChange" />
+    <view style="height: 300rpx;"></view>
+    <view class="addConfirm">
+    <van-button type="primary" bind:click="addConfirm">确认</van-button>
+    </view>
+  </van-cell-group>
+</van-action-sheet>
+
+<view class="addTask">
+  <van-button icon="plus" bind:click="addTask" type="primary" />
+</view>
