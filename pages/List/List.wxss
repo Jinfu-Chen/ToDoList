@@ -14,3 +14,9 @@
   height: 150rpx;
   justify-content: center;
 }
+.taskWhole{
+  border-radius: 30rpx;
+  padding: 20rpx;
+  margin: 10rpx;
+  background-color: lightskyblue;
+}

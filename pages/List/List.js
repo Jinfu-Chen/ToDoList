@@ -6,8 +6,19 @@ Page({
    */
   data: {
     index:0, //0.全部 1.未完成 2.已完成
-    taskList:[], //任务列表
-    show:false //展示page
+    taskList:[
+      {
+        id:1,
+        title:'first',
+        remarks:233,
+        creatTime:'2022/8/24上午10:29:23',
+        finishTime:'2022/8/24上午10:29:23',
+        finished:false
+      }
+    ], //任务列表
+    show:false, //展示page
+    title:'',
+    remarks:''
   },
   //切换标签
   onChange(event) {
@@ -38,6 +49,28 @@ Page({
   addConfirm(){
     this.setData({
       show:false
+    })
+    let creatTime=new Date().toLocaleString();
+    let task ={
+      id:this.data.taskList.length+1,
+      title:this.data.title,
+      remarks:this.data.remarks,
+      creatTime,
+      finishTime:'',
+      finished:false
+    }
+    this.setData({
+      taskList:[...this.data.taskList,task],
+      title:'',
+      remarks:''
+    })
+  },
+  //点击任务的勾选按钮，切换完成/未完成
+  changeStatus(e){
+    console.log(e);
+    let id=e.currentTarget.id;
+    this.setData({
+      ['taskList['+(id-1)+'].finished']:!this.data.taskList[id-1].finished
     })
   },
   /**

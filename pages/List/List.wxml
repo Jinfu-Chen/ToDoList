@@ -6,15 +6,31 @@
 
 <van-action-sheet show="{{show}}" bind:close="onClose" title="添加任务">
   <van-cell-group>
-    <van-field value="{{ title }}" label="任务标题" placeholder="请输入任务标题" border="{{ false }}" bind:change="onChange" />
-    <van-field value="{{ remarks }}" label="任务备注" placeholder="请输入任务备注" border="{{ false }}" bind:change="onChange" />
+    <van-field model:value="{{ title }}" label="任务标题" placeholder="请输入任务标题" border="{{ false }}" />
+    <van-field model:value="{{ remarks }}" label="任务备注" placeholder="请输入任务备注" border="{{ false }}" />
     <view style="height: 300rpx;"></view>
     <view class="addConfirm">
-    <van-button type="primary" bind:click="addConfirm">确认</van-button>
+      <van-button type="primary" bind:click="addConfirm">确认</van-button>
     </view>
   </van-cell-group>
 </van-action-sheet>
 
+<view wx:for="{{taskList}}" wx:key="id" class="taskWhole">
+  <view style="text-align: center;">任务{{item.id}}</view>
+  <view style="display: flex; align-items: center;">
+    <view style="width: 85%;">
+      <view>标题：{{item.title}}</view>
+      <view>备注：{{item.remarks}}</view>
+      <view style="font-size: 28rpx;">创建时间：{{item.creatTime}}</view>
+      <view style="font-size: 28rpx;">完成时间：{{item.finishTime}}</view>
+    </view>
+    <van-checkbox value="{{ item.finished }}" icon-size="80rpx" shape="square" bind:change="changeStatus" id="{{item.id}}"></van-checkbox>
+  </view>
+</view>
+
+<!-- <view>{{item.title}}</view>
+  <view>{{item.remarks}}</view>
+  <view>创建时间：{{item.creatTime}}</view> -->
 <view class="addTask">
   <van-button icon="plus" bind:click="addTask" type="primary" />
 </view>
