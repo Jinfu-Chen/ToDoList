@@ -49,6 +49,14 @@ Page({
   },
   //点击确认添加
   addConfirm() {
+    if(!this.data.title){
+      wx.showToast({
+        title: '请输入任务标题！',
+        icon:'error',
+        duration: 1500
+      })
+      return
+    }
     this.setData({
       show: false
     })
@@ -139,15 +147,22 @@ Page({
     console.log(taskList);
     console.log(showList)
     this.setData({
-      showList: showList,
-      finishedCount: finishedCount,
-      unfinishedCount: unfinishedCount
+      showList,
+      finishedCount,
+      unfinishedCount
     })
+    wx.setStorageSync('taskList', this.data.taskList) //储存
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var taskList = wx.getStorageSync('taskList')
+    if (taskList) {
+      this.setData({
+        taskList
+      })
+    }
     this.updataShowList()
   },
 
