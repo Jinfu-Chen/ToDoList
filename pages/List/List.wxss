@@ -2,12 +2,13 @@
 .addTask{
 	overflow:hidden;
 	/* margin-bottom:0; */
-	/* background:#f0eff5; */
+	background-color: lightgreen;
 	width:100%;
 	position:fixed;
 	bottom:0px;
 	display:flex;
-	justify-content:center;
+  justify-content:space-around;
+  align-items: center;
 }
 .addConfirm{
   display: flex;
