@@ -11,7 +11,7 @@ Page({
     taskList: [{
       id: 1,
       title: '示例任务',
-      remarks: "1.点击底部'+'添加任务 2.右侧勾选栏完成任务 3.右上角'x'删除任务",
+      remarks: "1.点击底部'+'添加任务\n          2.右侧勾选栏完成任务\n          3.右上角'x'删除任务",
       creatTime: '2022/08/24 13:00:47',
       finishTime: '',
       finished: false
@@ -19,9 +19,13 @@ Page({
     showList: [],
     unfinishedCount: 0,
     finishedCount: 0,
-    show: false, //展示page
+    show: false, //展示添加任务面板
+    showEdit: false, //展示修改任务面板
     title: '',
-    remarks: ''
+    remarks: '',
+    changeTitle:'',
+    changeRemarks:'',
+    changeIdx:0,
   },
   //切换标签
   onChange(event) {
@@ -49,10 +53,10 @@ Page({
   },
   //点击确认添加
   addConfirm() {
-    if(!this.data.title){
+    if (!this.data.title) {
       wx.showToast({
         title: '请输入任务标题！',
-        icon:'error',
+        icon: 'error',
         duration: 1500
       })
       return
@@ -87,7 +91,7 @@ Page({
     })
     this.updataShowList()
   },
-  //点击任务右上角的叉叉，删除任务
+  //点击任务左上角的叉叉，删除任务
   deleteTask(e) {
     var that = this
     wx.showModal({
@@ -114,6 +118,33 @@ Page({
         }
       }
     })
+  },
+  //点击右上角的编辑
+  editTask(e) {
+    console.log(e)
+    let idx = e.currentTarget.id - 1;
+    console.log(idx)
+    this.setData({
+      showEdit: true,
+      changeTitle:this.data.taskList[idx].title,
+      changeRemarks:this.data.taskList[idx].remarks,
+      changeIdx:idx
+    })
+  },
+  // 关闭编辑
+  // closeEdit() {
+  //   this.setData({
+  //     showEdit: false
+  //   })
+  // },
+  editConfitm(e){
+    let idx=this.data.changeIdx
+    
+    this.setData({
+      ['taskList['+idx+'].title']:this.data.changeTitle,
+      ['taskList['+idx+'].remarks']:this.data.changeRemarks
+    })
+    this.updataShowList()
   },
   //更新showList()
   updataShowList() {

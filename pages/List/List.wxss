@@ -21,3 +21,7 @@
   margin: 10rpx;
   background-color: lightskyblue;
 }
+.changeStatus .van-checkbox__icon-wrap{
+  /* background-color: red !important; */
+  border: #1989fa solid 3rpx !important;
+}
